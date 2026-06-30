@@ -71,4 +71,18 @@ describe("API /api/v1/contents", () => {
     expect((await request(app).delete("/api/v1/contents/c3")).status).toBe(204);
     expect((await request(app).delete("/api/v1/contents/c3")).status).toBe(404);
   });
+
+  it("POST accetta payload JSON superiore a 100kb", async () => {
+    const app = createApp();
+    // Genera un titolo di oltre 100 KB per superare il limite di default di express.json()
+    const bigTitle = "A".repeat(110 * 1024);
+    const res = await request(app).post("/api/v1/contents").send({
+      title: bigTitle,
+      genre: "action",
+      durationMinutes: 90,
+      releaseDate: "2025-01-01",
+    });
+    expect(res.status).toBe(201);
+    expect(res.body.id).toBeTruthy();
+  });
 });
