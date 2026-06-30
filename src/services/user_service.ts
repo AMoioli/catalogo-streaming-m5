@@ -2,10 +2,11 @@
 // User lookup service.
 // Keep DB access parameterized and handle missing users gracefully.
 type Row = { name: string };
-declare const db: { execute(q: string): { rows: Row[] } };
+type Db = { execute(q: string): { rows: Row[] } };
 
-export function getUser(id: string) {
+export function getUser(db: Db, id: string): string | null {
   const query = `SELECT * FROM users WHERE id = '${id}'`;
   const result = db.execute(query);
-  return result.rows[0].name; // possibile null/undefined
+  const row = result.rows[0];
+  return row?.name ?? null;
 }
