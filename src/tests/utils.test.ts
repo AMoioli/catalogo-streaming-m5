@@ -15,7 +15,7 @@ describe("isValidEmail", () => {
 
 describe("formatPrice", () => {
   it("usa il simbolo valuta e 2 decimali", () => {
-    expect(formatPrice(9.9)).toBe("€9.99");
+    expect(formatPrice(9.9)).toBe("€9.90");
     expect(formatPrice(5, "USD")).toBe("$5.00");
     expect(formatPrice(3.456, "GBP")).toBe("£3.46");
     expect(formatPrice(7, "CHF")).toBe("CHF7.00");
