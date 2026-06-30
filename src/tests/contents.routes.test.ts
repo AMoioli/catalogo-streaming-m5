@@ -71,4 +71,32 @@ describe("API /api/v1/contents", () => {
     expect((await request(app).delete("/api/v1/contents/c3")).status).toBe(204);
     expect((await request(app).delete("/api/v1/contents/c3")).status).toBe(404);
   });
+
+  it("POST accetta payload JSON superiore a 100kb", async () => {
+    const app = createApp();
+    // Genera un titolo di oltre 100 KB per superare il limite di default di express.json()
+    const bigTitle = "A".repeat(110 * 1024);
+    const res = await request(app).post("/api/v1/contents").send({
+      title: bigTitle,
+      genre: "action",
+      durationMinutes: 90,
+      releaseDate: "2025-01-01",
+    });
+    expect(res.status).toBe(201);
+    expect(res.body.id).toBeTruthy();
+    expect(res.body.title).toBe(bigTitle.trim());
+  });
+
+  it("POST rifiuta payload JSON superiore a 10mb", async () => {
+    const app = createApp();
+    // Genera un titolo che supera il limite di 10mb
+    const oversizedTitle = "B".repeat(11 * 1024 * 1024);
+    const res = await request(app).post("/api/v1/contents").send({
+      title: oversizedTitle,
+      genre: "action",
+      durationMinutes: 90,
+      releaseDate: "2025-01-01",
+    });
+    expect(res.status).toBe(413);
+  });
 });
