@@ -2,7 +2,7 @@ name: Auto-assign issues to Copilot
 
 on:
   issues:
-    types: [opened]
+    types: [opened, reopened]
 
 permissions:
   issues: write
