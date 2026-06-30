@@ -2,7 +2,7 @@
 name: Issue Triage
 on:
   issues:
-    types: [opened]
+    types: [opened, reopened]
 permissions:
   contents: read
   issues: read
@@ -20,7 +20,7 @@ safe-outputs:
   add-comment:
 ---
 
-When a new issue is opened, triage it using only the issue title and body.
+When a new issue is opened or reopened, triage it using only the issue title and body.
 
 Goals:
 - Propose up to 3 relevant labels.
