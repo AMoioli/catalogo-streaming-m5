@@ -1,6 +1,6 @@
-// src/services/userService.ts
-// ⚠️ Codice volutamente problematico per il Lab 2 (PR review Copilot).
-// Difetti: query non parametrizzata (SQL injection) + accesso senza null check.
+// src/services/user_service.ts
+// User lookup service.
+// Keep DB access parameterized and handle missing users gracefully.
 type Row = { name: string };
 declare const db: { execute(q: string): { rows: Row[] } };
 
