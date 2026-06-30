@@ -1,3 +1,5 @@
+NO MAIN DIRECT PUSH!
+
 # Catalogo Streaming — Starter CI-ready (Modulo 5)
 
 È il progetto del catalogo streaming, già predisposto per i lab di **automazione**:
