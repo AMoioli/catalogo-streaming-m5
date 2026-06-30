@@ -84,5 +84,19 @@ describe("API /api/v1/contents", () => {
     });
     expect(res.status).toBe(201);
     expect(res.body.id).toBeTruthy();
+    expect(res.body.title).toBe(bigTitle.trim());
+  });
+
+  it("POST rifiuta payload JSON superiore a 10mb", async () => {
+    const app = createApp();
+    // Genera un titolo che supera il limite di 10mb
+    const oversizedTitle = "B".repeat(11 * 1024 * 1024);
+    const res = await request(app).post("/api/v1/contents").send({
+      title: oversizedTitle,
+      genre: "action",
+      durationMinutes: 90,
+      releaseDate: "2025-01-01",
+    });
+    expect(res.status).toBe(413);
   });
 });
