@@ -4,8 +4,8 @@
 lint, test con coverage e un E2E Playwright passano "verdi". Nel Lab 1 generi la **CI**
 con l'AI; nel Lab 2 configuri **PR review Copilot** e **quality gate**.
 
-<!-- Lab 1 — Parte B: incolla qui il badge dopo aver creato il workflow e il repo
-![CI](https://github.com/USER/REPO/actions/workflows/ci.yml/badge.svg) -->
+
+![CI](https://github.com/AMoioli/catalogo-streaming-m5/actions/workflows/ci.yml/badge.svg)
 
 ## Prerequisiti (prima della sessione)
 ```bash
